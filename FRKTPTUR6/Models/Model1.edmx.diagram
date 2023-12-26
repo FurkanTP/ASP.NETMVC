@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1c84577f5ad2416ab9c6b96c5ed59656" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="FRKTPTURModel.Bilet" Width="1.5" PointX="12" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.BiletSatış" Width="1.5" PointX="14.375" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Fatura" Width="1.5" PointX="14.375" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Ilce" Width="1.5" PointX="2.625" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Muhasebe" Width="1.5" PointX="13.875" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Müşteri" Width="1.5" PointX="9.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Otobüs" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Personel" Width="1.5" PointX="7.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Sefer" Width="1.5" PointX="7.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Seferİptal" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Sehirler" Width="1.5" PointX="5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.Subeler" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRKTPTURModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Bilet_Müşteri" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Bilet_Otobüs" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Bilet_Sefer" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_BiletSatış_Bilet" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Fatura_BiletSatış1" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Muhasebe_Fatura" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Sehirler_Ilce" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Otobüs_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Otobüs_Subeler" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Sefer_Otobüs" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Personel_Subeler" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Sefer_Sehirler" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Seferİptal_Sefer" ManuallyRouted="false" />
+        <AssociationConnector Association="FRKTPTURModel.FK_Subeler_Sehirler" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FRKTPTURModelStoreContainer" CdmEntityContainer="FRKTPTUREntities">
+    <EntitySetMapping Name="Bilet">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Bilet">
+        <MappingFragment StoreEntitySet="Bilet">
+          <ScalarProperty Name="Bilet_ID" ColumnName="Bilet_ID" />
+          <ScalarProperty Name="Müs_ID" ColumnName="Müs_ID" />
+          <ScalarProperty Name="Sefer_ID" ColumnName="Sefer_ID" />
+          <ScalarProperty Name="Bus_ID" ColumnName="Bus_ID" />
+          <ScalarProperty Name="KoltukNO" ColumnName="KoltukNO" />
+          <ScalarProperty Name="KalkısZamanı" ColumnName="KalkısZamanı" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BiletSatış">
+      <EntityTypeMapping TypeName="FRKTPTURModel.BiletSatış">
+        <MappingFragment StoreEntitySet="BiletSatış">
+          <ScalarProperty Name="BiletSatıs_ID" ColumnName="BiletSatıs_ID" />
+          <ScalarProperty Name="Bilet_ID" ColumnName="Bilet_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fatura">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Fatura">
+        <MappingFragment StoreEntitySet="Fatura">
+          <ScalarProperty Name="Fatura_ID" ColumnName="Fatura_ID" />
+          <ScalarProperty Name="BiletSatıs_ID" ColumnName="BiletSatıs_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ilce">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Ilce">
+        <MappingFragment StoreEntitySet="Ilce">
+          <ScalarProperty Name="Ilce_ID" ColumnName="Ilce_ID" />
+          <ScalarProperty Name="IlceAd" ColumnName="IlceAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Muhasebe">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Muhasebe">
+        <MappingFragment StoreEntitySet="Muhasebe">
+          <ScalarProperty Name="Muhasebe_ID" ColumnName="Muhasebe_ID" />
+          <ScalarProperty Name="Fatura_ID" ColumnName="Fatura_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Müşteri">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Müşteri">
+        <MappingFragment StoreEntitySet="Müşteri">
+          <ScalarProperty Name="Müs_ID" ColumnName="Müs_ID" />
+          <ScalarProperty Name="MüsAd" ColumnName="MüsAd" />
+          <ScalarProperty Name="MüsSoyad" ColumnName="MüsSoyad" />
+          <ScalarProperty Name="MüsTelNO" ColumnName="MüsTelNO" />
+          <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+          <ScalarProperty Name="KullanıcıAd" ColumnName="KullanıcıAd" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Otobüs">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Otobüs">
+        <MappingFragment StoreEntitySet="Otobüs">
+          <ScalarProperty Name="Bus_ID" ColumnName="Bus_ID" />
+          <ScalarProperty Name="Sube_ID" ColumnName="Sube_ID" />
+          <ScalarProperty Name="Pers_ID" ColumnName="Pers_ID" />
+          <ScalarProperty Name="Sefer_ID" ColumnName="Sefer_ID" />
+          <ScalarProperty Name="Plaka" ColumnName="Plaka" />
+          <ScalarProperty Name="KoltukSayısı" ColumnName="KoltukSayısı" />
+          <ScalarProperty Name="BusMarka" ColumnName="BusMarka" />
+          <ScalarProperty Name="DoluKoltukSayısı" ColumnName="DoluKoltukSayısı" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="Pers_ID" ColumnName="Pers_ID" />
+          <ScalarProperty Name="Sube_ID" ColumnName="Sube_ID" />
+          <ScalarProperty Name="PersAd" ColumnName="PersAd" />
+          <ScalarProperty Name="PersSoyad" ColumnName="PersSoyad" />
+          <ScalarProperty Name="PersTelNO" ColumnName="PersTelNO" />
+          <ScalarProperty Name="KullanıcıAd" ColumnName="KullanıcıAd" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sefer">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Sefer">
+        <MappingFragment StoreEntitySet="Sefer">
+          <ScalarProperty Name="Sefer_ID" ColumnName="Sefer_ID" />
+          <ScalarProperty Name="Bus_ID" ColumnName="Bus_ID" />
+          <ScalarProperty Name="Sehir_ID" ColumnName="Sehir_ID" />
+          <ScalarProperty Name="Rota" ColumnName="Rota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seferİptal">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Seferİptal">
+        <MappingFragment StoreEntitySet="Seferİptal">
+          <ScalarProperty Name="Seferİptal_ID" ColumnName="Seferİptal_ID" />
+          <ScalarProperty Name="Sefer_ID" ColumnName="Sefer_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sehirler">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Sehirler">
+        <MappingFragment StoreEntitySet="Sehirler">
+          <ScalarProperty Name="Sehir_ID" ColumnName="Sehir_ID" />
+          <ScalarProperty Name="SehirAd" ColumnName="SehirAd" />
+          <ScalarProperty Name="Ilce_ID" ColumnName="Ilce_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subeler">
+      <EntityTypeMapping TypeName="FRKTPTURModel.Subeler">
+        <MappingFragment StoreEntitySet="Subeler">
+          <ScalarProperty Name="Sube_ID" ColumnName="Sube_ID" />
+          <ScalarProperty Name="Sehir_ID" ColumnName="Sehir_ID" />
+          <ScalarProperty Name="SubeAd" ColumnName="SubeAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FRKTPTURModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

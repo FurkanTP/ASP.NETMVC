@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FRKTPTURModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bilet">
+    <Key>
+      <PropertyRef Name="Bilet_ID" />
+    </Key>
+    <Property Name="Bilet_ID" Type="Int32" Nullable="false" />
+    <Property Name="Müs_ID" Type="Int32" Nullable="false" />
+    <Property Name="Sefer_ID" Type="Int32" Nullable="false" />
+    <Property Name="Bus_ID" Type="Int32" Nullable="false" />
+    <Property Name="KoltukNO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KalkısZamanı" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Müşteri" Relationship="Self.FK_Bilet_Müşteri" FromRole="Bilet" ToRole="Müşteri" />
+    <NavigationProperty Name="Otobüs" Relationship="Self.FK_Bilet_Otobüs" FromRole="Bilet" ToRole="Otobüs" />
+    <NavigationProperty Name="Sefer" Relationship="Self.FK_Bilet_Sefer" FromRole="Bilet" ToRole="Sefer" />
+    <NavigationProperty Name="BiletSatış" Relationship="Self.FK_BiletSatış_Bilet" FromRole="Bilet" ToRole="BiletSatış" />
+  </EntityType>
+  <EntityType Name="BiletSatış">
+    <Key>
+      <PropertyRef Name="BiletSatıs_ID" />
+    </Key>
+    <Property Name="BiletSatıs_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bilet_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bilet" Relationship="Self.FK_BiletSatış_Bilet" FromRole="BiletSatış" ToRole="Bilet" />
+    <NavigationProperty Name="Fatura" Relationship="Self.FK_Fatura_BiletSatış1" FromRole="BiletSatış" ToRole="Fatura" />
+  </EntityType>
+  <EntityType Name="Fatura">
+    <Key>
+      <PropertyRef Name="Fatura_ID" />
+    </Key>
+    <Property Name="Fatura_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BiletSatıs_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BiletSatış" Relationship="Self.FK_Fatura_BiletSatış1" FromRole="Fatura" ToRole="BiletSatış" />
+    <NavigationProperty Name="Muhasebe" Relationship="Self.FK_Muhasebe_Fatura" FromRole="Fatura" ToRole="Muhasebe" />
+  </EntityType>
+  <EntityType Name="Ilce">
+    <Key>
+      <PropertyRef Name="Ilce_ID" />
+    </Key>
+    <Property Name="Ilce_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IlceAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sehirler" Relationship="Self.FK_Sehirler_Ilce" FromRole="Ilce" ToRole="Sehirler" />
+  </EntityType>
+  <EntityType Name="Muhasebe">
+    <Key>
+      <PropertyRef Name="Muhasebe_ID" />
+    </Key>
+    <Property Name="Muhasebe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fatura_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Fatura" Relationship="Self.FK_Muhasebe_Fatura" FromRole="Muhasebe" ToRole="Fatura" />
+  </EntityType>
+  <EntityType Name="Müşteri">
+    <Key>
+      <PropertyRef Name="Müs_ID" />
+    </Key>
+    <Property Name="Müs_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MüsAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MüsSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MüsTelNO" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cinsiyet" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="KullanıcıAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bilet" Relationship="Self.FK_Bilet_Müşteri" FromRole="Müşteri" ToRole="Bilet" />
+  </EntityType>
+  <EntityType Name="Otobüs">
+    <Key>
+      <PropertyRef Name="Bus_ID" />
+    </Key>
+    <Property Name="Bus_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sube_ID" Type="Int32" Nullable="false" />
+    <Property Name="Pers_ID" Type="Int32" Nullable="false" />
+    <Property Name="Sefer_ID" Type="Int32" />
+    <Property Name="Plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KoltukSayısı" Type="Byte" Nullable="false" />
+    <Property Name="BusMarka" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DoluKoltukSayısı" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Bilet" Relationship="Self.FK_Bilet_Otobüs" FromRole="Otobüs" ToRole="Bilet" />
+    <NavigationProperty Name="Personel" Relationship="Self.FK_Otobüs_Personel" FromRole="Otobüs" ToRole="Personel" />
+    <NavigationProperty Name="Subeler" Relationship="Self.FK_Otobüs_Subeler" FromRole="Otobüs" ToRole="Subeler" />
+    <NavigationProperty Name="Sefer" Relationship="Self.FK_Sefer_Otobüs" FromRole="Otobüs" ToRole="Sefer" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="Pers_ID" />
+    </Key>
+    <Property Name="Pers_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sube_ID" Type="Int32" Nullable="false" />
+    <Property Name="PersAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersTelNO" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KullanıcıAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Otobüs" Relationship="Self.FK_Otobüs_Personel" FromRole="Personel" ToRole="Otobüs" />
+    <NavigationProperty Name="Subeler" Relationship="Self.FK_Personel_Subeler" FromRole="Personel" ToRole="Subeler" />
+  </EntityType>
+  <EntityType Name="Sefer">
+    <Key>
+      <PropertyRef Name="Sefer_ID" />
+    </Key>
+    <Property Name="Sefer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bus_ID" Type="Int32" Nullable="false" />
+    <Property Name="Sehir_ID" Type="Int32" Nullable="false" />
+    <Property Name="Rota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bilet" Relationship="Self.FK_Bilet_Sefer" FromRole="Sefer" ToRole="Bilet" />
+    <NavigationProperty Name="Otobüs" Relationship="Self.FK_Sefer_Otobüs" FromRole="Sefer" ToRole="Otobüs" />
+    <NavigationProperty Name="Sehirler" Relationship="Self.FK_Sefer_Sehirler" FromRole="Sefer" ToRole="Sehirler" />
+    <NavigationProperty Name="Seferİptal" Relationship="Self.FK_Seferİptal_Sefer" FromRole="Sefer" ToRole="Seferİptal" />
+  </EntityType>
+  <EntityType Name="Seferİptal">
+    <Key>
+      <PropertyRef Name="Seferİptal_ID" />
+    </Key>
+    <Property Name="Seferİptal_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sefer_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Sefer" Relationship="Self.FK_Seferİptal_Sefer" FromRole="Seferİptal" ToRole="Sefer" />
+  </EntityType>
+  <EntityType Name="Sehirler">
+    <Key>
+      <PropertyRef Name="Sehir_ID" />
+    </Key>
+    <Property Name="Sehir_ID" Type="Int32" Nullable="false" />
+    <Property Name="SehirAd" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ilce_ID" Type="Int32" />
+    <NavigationProperty Name="Ilce" Relationship="Self.FK_Sehirler_Ilce" FromRole="Sehirler" ToRole="Ilce" />
+    <NavigationProperty Name="Sefer" Relationship="Self.FK_Sefer_Sehirler" FromRole="Sehirler" ToRole="Sefer" />
+    <NavigationProperty Name="Subeler" Relationship="Self.FK_Subeler_Sehirler" FromRole="Sehirler" ToRole="Subeler" />
+  </EntityType>
+  <EntityType Name="Subeler">
+    <Key>
+      <PropertyRef Name="Sube_ID" />
+    </Key>
+    <Property Name="Sube_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sehir_ID" Type="Int32" Nullable="false" />
+    <Property Name="SubeAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Otobüs" Relationship="Self.FK_Otobüs_Subeler" FromRole="Subeler" ToRole="Otobüs" />
+    <NavigationProperty Name="Personel" Relationship="Self.FK_Personel_Subeler" FromRole="Subeler" ToRole="Personel" />
+    <NavigationProperty Name="Sehirler" Relationship="Self.FK_Subeler_Sehirler" FromRole="Subeler" ToRole="Sehirler" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Bilet_Müşteri">
+    <End Role="Müşteri" Type="Self.Müşteri" Multiplicity="1" />
+    <End Role="Bilet" Type="Self.Bilet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Müşteri">
+        <PropertyRef Name="Müs_ID" />
+      </Principal>
+      <Dependent Role="Bilet">
+        <PropertyRef Name="Müs_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bilet_Otobüs">
+    <End Role="Otobüs" Type="Self.Otobüs" Multiplicity="1" />
+    <End Role="Bilet" Type="Self.Bilet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otobüs">
+        <PropertyRef Name="Bus_ID" />
+      </Principal>
+      <Dependent Role="Bilet">
+        <PropertyRef Name="Bus_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bilet_Sefer">
+    <End Role="Sefer" Type="Self.Sefer" Multiplicity="1" />
+    <End Role="Bilet" Type="Self.Bilet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sefer">
+        <PropertyRef Name="Sefer_ID" />
+      </Principal>
+      <Dependent Role="Bilet">
+        <PropertyRef Name="Sefer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BiletSatış_Bilet">
+    <End Role="Bilet" Type="Self.Bilet" Multiplicity="1" />
+    <End Role="BiletSatış" Type="Self.BiletSatış" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bilet">
+        <PropertyRef Name="Bilet_ID" />
+      </Principal>
+      <Dependent Role="BiletSatış">
+        <PropertyRef Name="Bilet_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fatura_BiletSatış1">
+    <End Role="BiletSatış" Type="Self.BiletSatış" Multiplicity="1" />
+    <End Role="Fatura" Type="Self.Fatura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BiletSatış">
+        <PropertyRef Name="BiletSatıs_ID" />
+      </Principal>
+      <Dependent Role="Fatura">
+        <PropertyRef Name="BiletSatıs_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Muhasebe_Fatura">
+    <End Role="Fatura" Type="Self.Fatura" Multiplicity="1" />
+    <End Role="Muhasebe" Type="Self.Muhasebe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fatura">
+        <PropertyRef Name="Fatura_ID" />
+      </Principal>
+      <Dependent Role="Muhasebe">
+        <PropertyRef Name="Fatura_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sehirler_Ilce">
+    <End Role="Ilce" Type="Self.Ilce" Multiplicity="0..1" />
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ilce">
+        <PropertyRef Name="Ilce_ID" />
+      </Principal>
+      <Dependent Role="Sehirler">
+        <PropertyRef Name="Ilce_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Otobüs_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="1" />
+    <End Role="Otobüs" Type="Self.Otobüs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Pers_ID" />
+      </Principal>
+      <Dependent Role="Otobüs">
+        <PropertyRef Name="Pers_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Otobüs_Subeler">
+    <End Role="Subeler" Type="Self.Subeler" Multiplicity="1" />
+    <End Role="Otobüs" Type="Self.Otobüs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subeler">
+        <PropertyRef Name="Sube_ID" />
+      </Principal>
+      <Dependent Role="Otobüs">
+        <PropertyRef Name="Sube_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sefer_Otobüs">
+    <End Role="Otobüs" Type="Self.Otobüs" Multiplicity="1" />
+    <End Role="Sefer" Type="Self.Sefer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otobüs">
+        <PropertyRef Name="Bus_ID" />
+      </Principal>
+      <Dependent Role="Sefer">
+        <PropertyRef Name="Bus_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personel_Subeler">
+    <End Role="Subeler" Type="Self.Subeler" Multiplicity="1" />
+    <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subeler">
+        <PropertyRef Name="Sube_ID" />
+      </Principal>
+      <Dependent Role="Personel">
+        <PropertyRef Name="Sube_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sefer_Sehirler">
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="1" />
+    <End Role="Sefer" Type="Self.Sefer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="Sehir_ID" />
+      </Principal>
+      <Dependent Role="Sefer">
+        <PropertyRef Name="Sehir_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seferİptal_Sefer">
+    <End Role="Sefer" Type="Self.Sefer" Multiplicity="1" />
+    <End Role="Seferİptal" Type="Self.Seferİptal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sefer">
+        <PropertyRef Name="Sefer_ID" />
+      </Principal>
+      <Dependent Role="Seferİptal">
+        <PropertyRef Name="Sefer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subeler_Sehirler">
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="1" />
+    <End Role="Subeler" Type="Self.Subeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="Sehir_ID" />
+      </Principal>
+      <Dependent Role="Subeler">
+        <PropertyRef Name="Sehir_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FRKTPTUREntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bilet" EntityType="Self.Bilet" />
+    <EntitySet Name="BiletSatış" EntityType="Self.BiletSatış" />
+    <EntitySet Name="Fatura" EntityType="Self.Fatura" />
+    <EntitySet Name="Ilce" EntityType="Self.Ilce" />
+    <EntitySet Name="Muhasebe" EntityType="Self.Muhasebe" />
+    <EntitySet Name="Müşteri" EntityType="Self.Müşteri" />
+    <EntitySet Name="Otobüs" EntityType="Self.Otobüs" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" />
+    <EntitySet Name="Sefer" EntityType="Self.Sefer" />
+    <EntitySet Name="Seferİptal" EntityType="Self.Seferİptal" />
+    <EntitySet Name="Sehirler" EntityType="Self.Sehirler" />
+    <EntitySet Name="Subeler" EntityType="Self.Subeler" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Bilet_Müşteri" Association="Self.FK_Bilet_Müşteri">
+      <End Role="Müşteri" EntitySet="Müşteri" />
+      <End Role="Bilet" EntitySet="Bilet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bilet_Otobüs" Association="Self.FK_Bilet_Otobüs">
+      <End Role="Otobüs" EntitySet="Otobüs" />
+      <End Role="Bilet" EntitySet="Bilet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bilet_Sefer" Association="Self.FK_Bilet_Sefer">
+      <End Role="Sefer" EntitySet="Sefer" />
+      <End Role="Bilet" EntitySet="Bilet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BiletSatış_Bilet" Association="Self.FK_BiletSatış_Bilet">
+      <End Role="Bilet" EntitySet="Bilet" />
+      <End Role="BiletSatış" EntitySet="BiletSatış" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fatura_BiletSatış1" Association="Self.FK_Fatura_BiletSatış1">
+      <End Role="BiletSatış" EntitySet="BiletSatış" />
+      <End Role="Fatura" EntitySet="Fatura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Muhasebe_Fatura" Association="Self.FK_Muhasebe_Fatura">
+      <End Role="Fatura" EntitySet="Fatura" />
+      <End Role="Muhasebe" EntitySet="Muhasebe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sehirler_Ilce" Association="Self.FK_Sehirler_Ilce">
+      <End Role="Ilce" EntitySet="Ilce" />
+      <End Role="Sehirler" EntitySet="Sehirler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Otobüs_Personel" Association="Self.FK_Otobüs_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="Otobüs" EntitySet="Otobüs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Otobüs_Subeler" Association="Self.FK_Otobüs_Subeler">
+      <End Role="Subeler" EntitySet="Subeler" />
+      <End Role="Otobüs" EntitySet="Otobüs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sefer_Otobüs" Association="Self.FK_Sefer_Otobüs">
+      <End Role="Otobüs" EntitySet="Otobüs" />
+      <End Role="Sefer" EntitySet="Sefer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personel_Subeler" Association="Self.FK_Personel_Subeler">
+      <End Role="Subeler" EntitySet="Subeler" />
+      <End Role="Personel" EntitySet="Personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sefer_Sehirler" Association="Self.FK_Sefer_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirler" />
+      <End Role="Sefer" EntitySet="Sefer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seferİptal_Sefer" Association="Self.FK_Seferİptal_Sefer">
+      <End Role="Sefer" EntitySet="Sefer" />
+      <End Role="Seferİptal" EntitySet="Seferİptal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subeler_Sehirler" Association="Self.FK_Subeler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirler" />
+      <End Role="Subeler" EntitySet="Subeler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
